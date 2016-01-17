@@ -5,10 +5,10 @@ class SparcEntity(object):
     """A basic Sparc entity"""
     implements(IEntity)
     
-    def __init__(self, id, name, description):
-        self._id = id
-        self.name = name
-        self.description = description
+    def __init__(self, **kwargs):
+        self._id = kwargs['id']
+        self.name = kwargs['name']
+        self.description = kwargs['description']
     
     def getId(self):
         return self._id
