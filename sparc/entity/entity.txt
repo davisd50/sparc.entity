@@ -1,0 +1,21 @@
+Basic Sparc Entity
+-------------------
+A Sparc entity is an object that has a unique Id, a name, and a description.
+There is a convience class, SparcEntity, that can be used as a base class
+for other implementations.
+
+We'll test a simple object creation
+
+>>> from sparc.entity import SparcEntity
+>>> my_entity_details = {
+... 			'id': '12345',
+...				'name': u'A name',
+...				'description': u'A description'
+...				}
+>>> my_entity = SparcEntity(**my_entity_details)
+>>> my_entity.getId()
+'12345'
+>>> my_entity.name
+u'A name'
+>>> my_entity.description
+u'A description'
