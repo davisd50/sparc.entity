@@ -6,9 +6,10 @@ class SparcEntity(object):
     implements(IEntity)
     
     def __init__(self, **kwargs):
-        self._id = kwargs['id']
-        self.name = kwargs['name']
-        self.description = kwargs['description']
+        self._id = kwargs['id'] # required
+        self.name = kwargs['name'] if 'name' in kwargs else None
+        self.description = kwargs['description'] \
+                            if 'description' in kwargs else None
     
     def getId(self):
         return self._id
