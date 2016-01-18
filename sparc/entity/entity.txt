@@ -9,7 +9,8 @@ We'll test a simple object creation
 >>> my_entity_details = {
 ... 			'id': '12345',
 ...				'name': u'A name',
-...				'description': u'A description'
+...				'description': u'A description',
+...				'details': u'Some details'
 ...				}
 >>> my_entity = SparcEntity(**my_entity_details)
 >>> my_entity.getId()
@@ -18,6 +19,15 @@ We'll test a simple object creation
 u'A name'
 >>> my_entity.description
 u'A description'
+>>> my_entity.details
+u'Some details'
+
+We should also be able to create an entity without so much noise
+>>> my_entity_details = {'id': '12345'}
+>>> my_entity = SparcEntity(**my_entity_details)
+>>> my_entity.getId()
+'12345'
+>>> my_entity.name
 
 The implementation also supports Zope annotations.  However, to leverage
 annotations, we need to configure the zope.annotation package.  We'll

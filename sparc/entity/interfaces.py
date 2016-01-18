@@ -1,6 +1,6 @@
 from zope.interface import Interface
 from zope.interface import Attribute
-
+from zope import schema
 
 class IIdentified(Interface):
     """Object that is identifiable"""
@@ -9,13 +9,27 @@ class IIdentified(Interface):
 
 class INamed(Interface):
     """Object that has a name"""
-    name = Attribute("The name of the object")
+    name = schema.TextLine(
+            title = u'Name',
+            description = u'An object name',
+            )
 
 class IDescribed(Interface):
     """Object that can be described"""
-    description = Attribute("The object description")
+    description = schema.Text(
+            title = u'Description',
+            description = u'An object description',
+            )
+
+class IDetailed(Interface):
+    """Object that can be detailed"""
+    details = schema.Text(
+            title = u'Details',
+            description = u'An object details',
+            )
 
 class IEntity(IIdentified,
               INamed,
-              IDescribed):
-    """An identified, named, described object"""
+              IDescribed,
+              IDetailed):
+    """An identified, named, described, detailed object"""

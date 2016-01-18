@@ -1,5 +1,6 @@
 from zope.annotation.interfaces import IAttributeAnnotatable
 from zope.interface import implements
+from zope.schema.fieldproperty import FieldProperty
 from interfaces import IEntity
 
 class SparcEntity(object):
@@ -8,10 +9,13 @@ class SparcEntity(object):
     
     def __init__(self, **kwargs):
         self._id = kwargs['id'] # required
-        self.name = kwargs['name'] if 'name' in kwargs else None
-        self.description = kwargs['description'] \
-                            if 'description' in kwargs else None
+        if 'name' in kwargs: self.name = kwargs['name']
+        if 'description' in kwargs: self.description = kwargs['description']
+        if 'details' in kwargs: self.details = kwargs['details']
     
     def getId(self):
         return self._id
     
+    name = FieldProperty(IEntity['name'])
+    description = FieldProperty(IEntity['description'])
+    details = FieldProperty(IEntity['details'])
