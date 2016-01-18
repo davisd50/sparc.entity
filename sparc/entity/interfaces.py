@@ -1,6 +1,5 @@
 from zope.interface import Interface
 from zope.interface import Attribute
-from zope import schema
 
 
 class IIdentified(Interface):
@@ -20,10 +19,3 @@ class IEntity(IIdentified,
               INamed,
               IDescribed):
     """An identified, named, described object"""
-
-class ITaggable(Interface):
-    """Something that can be taged with keywords"""
-    tags = schema.Set(
-            title = u'Tags',
-            description = u'A set of keyword tags assigned to object',
-            )
