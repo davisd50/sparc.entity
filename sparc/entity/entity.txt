@@ -5,7 +5,6 @@ There is a convience class, SparcEntity, that can be used as a base class
 for other implementations.
 
 We'll test a simple object creation
-
 >>> from sparc.entity import SparcEntity
 >>> my_entity_details = {
 ... 			'id': '12345',
@@ -19,3 +18,21 @@ We'll test a simple object creation
 u'A name'
 >>> my_entity.description
 u'A description'
+
+The implementation also supports Zope annotations.  However, to leverage
+annotations, we need to configure the zope.annotation package.  We'll
+do this through the Configure() convienence function in our package.
+>>> from sparc.entity import Configure
+>>> Configure()
+
+We can now use annotations
+>>> from zope.annotation.interfaces import IAnnotations, IAnnotatable
+>>> IAnnotatable.providedBy(my_entity)
+True
+>>> from zope.annotation.interfaces import IAttributeAnnotatable
+>>> IAttributeAnnotatable.providedBy(my_entity)
+True
+>>> annotations = IAnnotations(my_entity)
+>>> annotations['my_test'] = 'an annotations'
+>>> my_entity.__dict__['__annotations__']
+{'my_test': 'an annotations'}
