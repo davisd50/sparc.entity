@@ -33,3 +33,10 @@ class IEntity(IIdentified,
               IDescribed,
               IDetailed):
     """An identified, named, described, detailed object"""
+
+class IUrlReference(Interface):
+    """A reference URL"""
+    url = schema.TextLine(
+            title = u'URL',
+            description = u'A URL related to object',
+            )
