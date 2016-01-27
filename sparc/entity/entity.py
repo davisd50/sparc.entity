@@ -8,6 +8,7 @@ from zope.schema import getFields
 from zope.schema.fieldproperty import FieldProperty
 from interfaces import IEntity
 from interfaces import IUrlReference
+from interfaces import IKeyphraseTags
 
 class SparcEntity(object):
     """A basic Sparc entity"""
@@ -43,5 +44,23 @@ class SparcEntityUrlForAnnotableObjects(object):
     @url.setter
     def url(self, value):
         getFields(IUrlReference)['url'].validate(value)
-        #IUrlReference.url.validate(value)
         self.annotations['url'] = value
+
+class SparcEntityKeyphraseTagsForAnnotableObjects(object):
+    implements(IKeyphraseTags)
+    adapts(IAnnotatable)
+    
+    def __init__(self, context):
+        self.context = context
+        self.annotations = IAnnotations(context).\
+                                setdefault('IKeyphraseTags', OOBTree())
+        if 'tags' not in self.annotations:
+            self.annotations['tags'] = set()
+    
+    @property
+    def tags(self):
+        return self.annotations['tags']
+    @tags.setter
+    def tags(self, value):
+        getFields(IKeyphraseTags)['tags'].validate(value)
+        self.annotations['tags'] = value

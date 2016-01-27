@@ -3,6 +3,7 @@ from interfaces import IEntity
 from interfaces import IIdentified
 from interfaces import INamed
 from interfaces import IUrlReference
+from interfaces import IKeyphraseTags
 
 from entity import SparcEntity
 

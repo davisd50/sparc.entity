@@ -47,7 +47,7 @@ True
 >>> dict(my_entity.__dict__['__annotations__'])
 {'my_test': 'an annotations'}
 
-We also have an adapter that allows us to add a URL reference to our entities
+We have an adapter that allows us to add a URL reference to our entities
 >>> from sparc.entity import IUrlReference
 >>> reference = IUrlReference(my_entity)
 >>> reference.url
@@ -58,6 +58,21 @@ u'http://myref.website.com/my_entity'
 >>> from zope.schema import ValidationError
 >>> try:
 ...     reference.url = ''
+...     assert False
+... except ValidationError:
+...     pass
+
+We have another adapter that allows us to add keyword tags to our entities
+>>> from sparc.entity import IKeyphraseTags
+>>> keyphrase_tags = IKeyphraseTags(my_entity)
+>>> keyphrase_tags.tags
+set([])
+
+>>> keyphrase_tags.tags.add(u'a keyphrase tag')
+>>> keyphrase_tags.tags
+set([u'a keyphrase tag'])
+>>> try:
+...     keyphrase_tags.tags = ''
 ...     assert False
 ... except ValidationError:
 ...     pass

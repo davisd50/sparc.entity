@@ -40,3 +40,10 @@ class IUrlReference(Interface):
             title = u'URL',
             description = u'A URL related to object',
             )
+
+class IKeyphraseTags(Interface):
+    """Set of keyword tags"""
+    tags = schema.Set(
+            title = u'Tags',
+            description = u'A set of keyword tags',
+            )
