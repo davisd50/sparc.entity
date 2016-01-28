@@ -52,9 +52,9 @@ We have an adapter that allows us to add a URL reference to our entities
 >>> reference = IUrlReference(my_entity)
 >>> reference.url
 
->>> reference.url = u'http://myref.website.com/my_entity'
+>>> reference.url = 'http://myref.website.com/my_entity'
 >>> reference.url
-u'http://myref.website.com/my_entity'
+'http://myref.website.com/my_entity'
 >>> from zope.schema import ValidationError
 >>> try:
 ...     reference.url = ''

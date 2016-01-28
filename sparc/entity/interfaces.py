@@ -36,7 +36,7 @@ class IEntity(IIdentified,
 
 class IUrlReference(Interface):
     """A reference URL"""
-    url = schema.TextLine(
+    url = schema.URI(
             title = u'URL',
             description = u'A URL related to object',
             )
