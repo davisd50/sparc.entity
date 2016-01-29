@@ -34,6 +34,14 @@ class IEntity(IIdentified,
               IDetailed):
     """An identified, named, described, detailed object"""
 
+class IOwner(Interface):
+    """An owner"""
+    owner = schema.Field(
+            title = u'Owner Entity',
+            description = u'The owner',
+            constraint = lambda v: IEntity.providedBy(v)
+            )
+    
 class IUrlReference(Interface):
     """A reference URL"""
     url = schema.URI(

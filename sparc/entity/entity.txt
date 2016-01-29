@@ -47,6 +47,21 @@ True
 >>> dict(my_entity.__dict__['__annotations__'])
 {'my_test': 'an annotations'}
 
+We have an adapter that allows us to add a owner reference to our entities
+>>> from sparc.entity import IOwner
+>>> owner = IOwner(my_entity)
+>>> owner.owner
+
+>>> owner.owner = my_entity
+>>> owner.owner.getId()
+'12345'
+>>> from zope.schema import ValidationError
+>>> try:
+...     owner.owner = ''
+...     assert False
+... except ValidationError:
+...     pass
+
 We have an adapter that allows us to add a URL reference to our entities
 >>> from sparc.entity import IUrlReference
 >>> reference = IUrlReference(my_entity)

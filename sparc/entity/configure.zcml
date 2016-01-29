@@ -5,6 +5,12 @@
 
     <adapter
     	for="zope.annotation.interfaces.IAttributeAnnotatable"
+    	provides="sparc.entity.IOwner"
+    	factory=".entity.SparcEntityOwnerForAnnotableObjects"
+    	/>
+
+    <adapter
+    	for="zope.annotation.interfaces.IAttributeAnnotatable"
     	provides="sparc.entity.IUrlReference"
     	factory=".entity.SparcEntityUrlForAnnotableObjects"
     	/>
