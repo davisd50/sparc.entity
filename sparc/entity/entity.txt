@@ -4,15 +4,20 @@ A Sparc entity is an object that has a unique Id, a name, and a description.
 There is a convience class, SparcEntity, that can be used as a base class
 for other implementations.
 
+Configure
+>>> from sparc.entity import Configure
+>>> Configure()
+
+
 We'll test a simple object creation
->>> from sparc.entity import SparcEntity
+>>> from zope.component import createObject
 >>> my_entity_details = {
 ... 			'id': '12345',
 ...				'name': u'A name',
 ...				'description': u'A description',
 ...				'details': u'Some details'
 ...				}
->>> my_entity = SparcEntity(**my_entity_details)
+>>> my_entity = createObject(u'sparc.entity.entity', **my_entity_details)
 >>> my_entity.getId()
 '12345'
 >>> my_entity.name
@@ -24,18 +29,12 @@ u'Some details'
 
 We should also be able to create an entity without so much noise
 >>> my_entity_details = {'id': '12345'}
->>> my_entity = SparcEntity(**my_entity_details)
+>>> my_entity = createObject(u'sparc.entity.entity', **my_entity_details)
 >>> my_entity.getId()
 '12345'
 >>> my_entity.name
 
-The implementation also supports Zope annotations.  However, to leverage
-annotations, we need to configure the zope.annotation package.  We'll
-do this through the Configure() convienence function in our package.
->>> from sparc.entity import Configure
->>> Configure()
-
-We can now use annotations
+The implementation also supports Zope annotations.
 >>> from zope.annotation.interfaces import IAnnotations, IAnnotatable
 >>> IAnnotatable.providedBy(my_entity)
 True

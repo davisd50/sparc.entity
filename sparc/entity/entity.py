@@ -3,6 +3,7 @@ from zope.annotation.interfaces import IAnnotations
 from zope.annotation.interfaces import IAnnotatable
 from zope.annotation.interfaces import IAttributeAnnotatable
 from zope.component import adapts
+from zope.component.factory import Factory
 from zope.interface import implements
 from zope.schema import getFields
 from zope.schema.fieldproperty import FieldProperty
@@ -27,7 +28,7 @@ class SparcEntity(object):
     name = FieldProperty(IEntity['name'])
     description = FieldProperty(IEntity['description'])
     details = FieldProperty(IEntity['details'])
-
+sparcEntityFactory = Factory(SparcEntity)
 
 class SparcEntityOwnerForAnnotableObjects(object):
     implements(IOwner)
