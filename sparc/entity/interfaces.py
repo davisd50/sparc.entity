@@ -5,6 +5,12 @@ class IIdentified(Interface):
     """Object that is identifiable"""
     def getId():
         """Return object ascii identifier"""
+    id = schema.ASCIILine(
+            title = u'Identifier',
+            description = u'ASCII identifier for object',
+            readonly = True,
+            required = True
+            )
 
 class INamed(Interface):
     """Object that has a name"""

@@ -8,6 +8,7 @@ from zope.interface import implements
 from zope import schema
 from zope.schema import getFields
 from zope.schema.fieldproperty import FieldProperty
+from interfaces import IIdentified
 from interfaces import IEntity
 from interfaces import IOwner
 from interfaces import IUrlReference
@@ -18,21 +19,15 @@ class SparcEntity(object):
     implements(IEntity, IAttributeAnnotatable)
     
     def __init__(self, **kwargs):
-        self._id = kwargs['id'] # required
+        self.id = kwargs['id'] # required
         if 'name' in kwargs: self.name = kwargs['name']
         if 'description' in kwargs: self.description = kwargs['description']
         if 'details' in kwargs: self.details = kwargs['details']
 
-    _id = FieldProperty(
-                schema.ASCIILine(
-                        title = u'Id',
-                        description = u'return value for getId()'
-                    )
-            )
-    
     #IEntity
+    id = FieldProperty(IIdentified['id'])
     def getId(self):
-        return self._id
+        return self.id
     
     name = FieldProperty(IEntity['name'])
     description = FieldProperty(IEntity['description'])
