@@ -1,11 +1,10 @@
 from zope.interface import Interface
-from zope.interface import Attribute
 from zope import schema
 
 class IIdentified(Interface):
     """Object that is identifiable"""
     def getId():
-        """Return object identifier"""
+        """Return object ascii identifier"""
 
 class INamed(Interface):
     """Object that has a name"""
