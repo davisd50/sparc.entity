@@ -33,7 +33,7 @@ setup(name='sparc.entity',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'persisent',
+          'persistent',
           'BTrees',
           'zope.interface',
           'zope.component',
