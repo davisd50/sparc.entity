@@ -4,11 +4,6 @@ A Sparc entity is an object that has a unique Id, a name, and a description.
 There is a convience class, SparcEntity, that can be used as a base class
 for other implementations.
 
-Configure
->>> from sparc.entity import Configure
->>> Configure()
-
-
 We'll test a simple object creation
 >>> from zope.component import createObject
 >>> my_entity_details = {

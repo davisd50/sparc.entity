@@ -4,10 +4,6 @@ Persistent Sparc Entity
 This is an implementation of sparc.entity.IEntity that can be persisted into
 a ZODB data store.
 
-Configure the ZCA registry
->>> from sparc.entity import Configure
->>> Configure()
-
 Create and test a persistent entity
 >>> from zope.component import createObject
 >>> from persistent.interfaces import IPersistent
