@@ -5,7 +5,6 @@ from zope.annotation.interfaces import IAttributeAnnotatable
 from zope.component import adapts
 from zope.component.factory import Factory
 from zope.interface import implements
-from zope import schema
 from zope.schema import getFields
 from zope.schema.fieldproperty import FieldProperty
 from interfaces import IIdentified
@@ -13,6 +12,11 @@ from interfaces import IEntity
 from interfaces import IOwner
 from interfaces import IUrlReference
 from interfaces import IKeyphraseTags
+
+class BaseSchemaObject(object):
+    def __init__(self, **kwargs):
+        for k, v in kwargs.iteritems():
+            setattr(self, k, v)
 
 class SparcEntity(object):
     """A basic Sparc entity"""
