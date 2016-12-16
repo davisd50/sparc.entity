@@ -2,25 +2,25 @@ from BTrees.OOBTree import OOBTree
 from zope.annotation.interfaces import IAnnotations
 from zope.annotation.interfaces import IAnnotatable
 from zope.annotation.interfaces import IAttributeAnnotatable
-from zope.component import adapts
+from zope import component
 from zope.component.factory import Factory
-from zope.interface import implements
+from zope import interface
 from zope.schema import getFields
 from zope.schema.fieldproperty import FieldProperty
-from interfaces import IIdentified
-from interfaces import IEntity
-from interfaces import IOwner
-from interfaces import IUrlReference
-from interfaces import IKeyphraseTags
+from .interfaces import IIdentified
+from .interfaces import IEntity
+from .interfaces import IOwner
+from .interfaces import IUrlReference
+from .interfaces import IKeyphraseTags
 
 class BaseSchemaObject(object):
     def __init__(self, **kwargs):
-        for k, v in kwargs.iteritems():
+        for k, v in kwargs.items():
             setattr(self, k, v)
 
+@interface.implementer(IEntity, IAttributeAnnotatable)
 class SparcEntity(object):
     """A basic Sparc entity"""
-    implements(IEntity, IAttributeAnnotatable)
     
     def __init__(self, **kwargs):
         self.id = kwargs['id'] # required
@@ -38,9 +38,9 @@ class SparcEntity(object):
     details = FieldProperty(IEntity['details'])
 sparcEntityFactory = Factory(SparcEntity)
 
+@interface.implementer(IOwner)
+@component.adapter(IAnnotatable)
 class SparcEntityOwnerForAnnotableObjects(object):
-    implements(IOwner)
-    adapts(IAnnotatable)
     
     def __init__(self, context):
         self.context = context
@@ -58,9 +58,9 @@ class SparcEntityOwnerForAnnotableObjects(object):
         self.annotations['owner'] = value
 
 
+@interface.implementer(IUrlReference)
+@component.adapter(IAnnotatable)
 class SparcEntityUrlForAnnotableObjects(object):
-    implements(IUrlReference)
-    adapts(IAnnotatable)
     
     def __init__(self, context):
         self.context = context
@@ -78,9 +78,9 @@ class SparcEntityUrlForAnnotableObjects(object):
         self.annotations['url'] = value
 
 
+@interface.implementer(IKeyphraseTags)
+@component.adapter(IAnnotatable)
 class SparcEntityKeyphraseTagsForAnnotableObjects(object):
-    implements(IKeyphraseTags)
-    adapts(IAnnotatable)
     
     def __init__(self, context):
         self.context = context

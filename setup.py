@@ -37,8 +37,7 @@ setup(name='sparc.entity',
           'BTrees',
           'zope.interface',
           'zope.component',
-          'zope.annotation',
-          'sparc.configuration'
+          'zope.annotation'
           # -*- Extra requirements: -*-
       ],
       tests_require=[

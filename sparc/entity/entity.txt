@@ -15,12 +15,12 @@ We'll test a simple object creation
 >>> my_entity = createObject(u'sparc.entity.entity', **my_entity_details)
 >>> my_entity.getId()
 '12345'
->>> my_entity.name
-u'A name'
->>> my_entity.description
-u'A description'
->>> my_entity.details
-u'Some details'
+>>> my_entity.name == u'A name'
+True
+>>> my_entity.description == u'A description'
+True
+>>> my_entity.details == u'Some details'
+True
 
 We should also be able to create an entity without so much noise
 >>> my_entity_details = {'id': '12345'}
@@ -74,12 +74,12 @@ We have an adapter that allows us to add a URL reference to our entities
 We have another adapter that allows us to add keyword tags to our entities
 >>> from sparc.entity import IKeyphraseTags
 >>> keyphrase_tags = IKeyphraseTags(my_entity)
->>> keyphrase_tags.tags
-set([])
+>>> keyphrase_tags.tags == set()
+True
 
 >>> keyphrase_tags.tags.add(u'a keyphrase tag')
->>> keyphrase_tags.tags
-set([u'a keyphrase tag'])
+>>> keyphrase_tags.tags == set([u'a keyphrase tag'])
+True
 >>> try:
 ...     keyphrase_tags.tags = ''
 ...     assert False
